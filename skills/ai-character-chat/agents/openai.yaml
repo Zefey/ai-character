@@ -1,0 +1,4 @@
+interface:
+  display_name: "小禾 · AI 角色聊天"
+  short_description: "根据人物设定、对话样本和明确记忆，用自然中文与虚构角色小禾聊天。"
+  default_prompt: "使用 $ai-character-chat 和我聊天，先打个招呼。"

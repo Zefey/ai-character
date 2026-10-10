@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>小禾 · 角色工作室</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">禾</span><div>角色工作室<small>CHARACTER STUDIO / DEMO</small></div></div>
+    <div class="portrait"><span id="avatar-letter">禾</span><img id="avatar" alt="角色头像" hidden></div>
+    <label class="upload">选择本地头像<input id="avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden></label>
+    <h1 id="character-name">小禾</h1><p class="description">从表达习惯与明确记忆出发，<br>构建一个可以交谈的虚构角色。</p>
+    <div class="badge" id="mode">正在连接本地服务</div>
+    <nav><button class="nav active" data-view="chat">01 <span>与角色聊天</span></button><button class="nav" data-view="settings">02 <span>整理角色资料</span></button></nav>
+    <div class="sidebar-foot">AI 角色并非本人。<br>这里的初始资料全部为虚构示例。<br>头像仅在本页面显示，不会发送给模型。</div>
+  </aside>
+  <main>
+    <section id="chat-view" class="view">
+      <header><div><div class="eyebrow">A SPACE FOR CONVERSATION</div><h2>从一句话开始。</h2></div><div class="header-actions"><button id="export-chat" class="quiet">导出对话</button><button id="clear-chat" class="quiet">清空</button></div></header>
+      <div id="demo-note" class="notice">当前是离线规则演示，不是 AI 推理。配置 .env 中的 API_KEY 与 MODEL 后重启即可接入模型。</div>
+      <div id="messages" aria-live="polite" aria-relevant="additions"></div>
+      <div class="suggestions"><button>今天有点累。</button><button>记得我们聊过的电影吗？</button><button>你好，小禾。</button></div>
+      <form id="chat-form"><textarea id="message-input" rows="2" maxlength="8000" placeholder="写下你想说的话…" aria-label="聊天消息" required></textarea><button id="send" type="submit">发送 ↗</button></form>
+      <p class="composer-note">Enter 发送 · Shift + Enter 换行 · 对话仅保留在当前页面，刷新后清空</p>
+      <p id="chat-error" class="error" role="alert"></p>
+    </section>
+    <section id="settings-view" class="view" hidden>
+      <header><div><div class="eyebrow">GIVE THE CHARACTER CONTEXT</div><h2>资料，让表达有依据。</h2></div></header>
+      <p class="intro">先填事实，再写习惯。把“她说过什么”和“我觉得她怎样”分开。保存后会用于下一次回应。</p>
+      <div class="toolbar"><label class="quiet upload">导入角色 JSON<input id="import-character" type="file" accept=".json" hidden></label><button id="export-character" class="quiet">导出当前表单</button></div>
+      <form id="character-form">
+        <div class="two-column"><label>角色称呼<input name="name" maxlength="40" required></label><label>起始关系<input name="relationship" maxlength="20000" required></label></div>
+        <label>基础事实<textarea name="profile" rows="4" maxlength="20000"></textarea><small>兴趣、习惯、明确知道的经历；推测请单独标记。</small></label>
+        <label>表达习惯<textarea name="style" rows="4" maxlength="20000"></textarea><small>句子长短、接话方式、不同情境下的回应方式。</small></label>
+        <label>共同记忆<textarea name="memories" rows="5" maxlength="20000"></textarea><small>每条包含事件、时间、资料来源和确定程度。</small></label>
+        <label>对话样本<textarea name="examples" rows="7" maxlength="20000"></textarea><small>保留上下文并标注关系阶段。第一版可选 30 段代表性对话。</small></label>
+        <label>图片说明<textarea name="photoNotes" rows="4" maxlength="20000"></textarea><small>记录场景与关联事件。本版不分析图片，图片文件不会上传。</small></label>
+        <label>角色规则<textarea name="rules" rows="4" maxlength="20000"></textarea><small>未知就说明不确定，不替本人回答当前感情。</small></label>
+        <div class="save-row"><button type="submit" class="primary" id="save-character">保存资料</button><span id="save-status" role="status"></span></div>
+      </form>
+    </section>
+  </main>
+</div>
+</body>
+</html>
